@@ -6,15 +6,17 @@ import {useState} from 'react';
 import { CORE_CONCEPTS, EXAMPLES } from './data.js';
 
 function App() {
+  // we use state to keep track of which tab is selected
+  // useState is one of the built-in hooks that React provides (it is used to handle state in functional components)
   const [selectedTab, setSelectedTab] = useState('components');
 
   function handleClick(tabName) {
-    // tabContent = <h3>{`You clicked the ${tabName} tab button!`}</h3>;
     setSelectedTab(tabName);
   }
 
   return (
     <div>
+      {/* each file is responsible to render 1 component */}
       <Header />
       <main>
         <section id='core-concepts'>
@@ -60,12 +62,14 @@ function App() {
         <section id='examples'>
           <h2>Examples</h2>
           <menu>
+            {/* add tab buttons custom component */}
             <TabButton onSelect={() => handleClick('components')}>Components</TabButton>
             <TabButton onSelect={() => handleClick('jsx')}>JSX</TabButton>
             <TabButton onSelect={() => handleClick('props')}>Props</TabButton>
             <TabButton onSelect={() => handleClick('state')}>State</TabButton>
           </menu>
           <div id='tab-content'>
+            {/* EXAMPLES is taken from ./data.js */}
             <h3>{EXAMPLES[selectedTab].title}</h3>
             <p>{EXAMPLES[selectedTab].description}</p>
             <pre>
